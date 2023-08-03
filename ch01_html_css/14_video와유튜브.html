@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비디오와 유튜브</title>
+</head>
+
+<body>
+    <!-- autoplay : 페이지 진입시 자동으로 재생 -->
+    <!-- controls : 영상에 마우스 올리면 제어하는 부분이 생김 -->
+    <!-- loop : 영상 무한 재생 -->
+    <!-- muted : 음소거 상태로 재생 -->
+    <video src="../resources/videos/waves_-_71122 (1080p).mp4" width="1000" , height="600" autoplay loop muted></video>
+
+    <div>
+        <!-- iframe은 태그 내부에서 src에 적힌 웹사이트를 보여준다. -->
+        <iframe width="1000" height="600" src="https://www.youtube.com/embed/Y8m2_79mFoU" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </div>
+
+    <div>
+        <!-- 대부분의 사이트들은 iframe에 자신들의 웹사이트가 동작하지 않도록 막고있다. -->
+        <!-- why? : 해킹사이트 같은 걸 만들기 쉬워짐. -->
+        <!-- 우리가 만드는 사이트는 별도로 iframe 사용을 금지 하지 않아 정상적으로 사용가능 -->
+        <iframe width="1000" height="600" src="https://www.naver.com" frameborder="0"></iframe>
+    </div>
+
+    <div>
+        <iframe width = "1000" height = "600" src="./13_border.html" frameborder="0"></iframe>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬(구글)</title>
+    <style>
+        
+
+        .hearder img {
+            border-radius: 25px;
+            border: 2px solid;
+            /* 시계 방향으로 돌아가면서 색 분배 */
+            border-color: red blue green yellow;
+        }
+
+        .hearder a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .hearder a:hover {
+            text-decoration: underline;
+        }
+
+        .hearder {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+
+        .logo {
+            height: 300px;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 600px;
+        }
+
+        .serch-box {
+            height: 50px;
+            text-align: center;
+        }
+
+        .serch-box input {
+            width: 600px;
+            height: 30px;
+            border: 0;
+            border-radius: 15px;
+            box-shadow: 0px 0px 4px 1px silver;
+            padding-left: 10px;
+        }
+
+        .bottom {
+            height: 200px;
+        }
+
+        .site-box {
+            width: 600px;
+            /* 부모의 높이로 적용 */
+            height: 100%;
+            margin: auto;
+
+            display: flex;
+            /* 자식요소가 부모요소의 크기를 벗어나는 경우 wrap이면 줄바꿈이 일어남. nowrap면 우겨넣음. */
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .site-box>div:hover {
+            background-color: gainsboro;
+        }
+
+        .site-box img {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+        }
+
+        .site-box>div {
+            width: 120px;
+            height: 100px;
+            display: flex;
+            /* 정렬 방향을 수직으로 변경 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .site-box p {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hearder">
+            <a href="">Gmail</a>
+            <a href="">이미지</a>
+            <img width="50px" src="https://cdn-icons-png.flaticon.com/512/1534/1534071.png" alt="">
+        </div>
+
+        <div class="logo">
+            <img src="https://www.google.com/logos/doodles/2023/2023-womens-world-cup-aug-03-6753651837110066-law.gif"
+                alt="">
+        </div>
+
+        <div class="serch-box">
+            <input type="text" placeholder="Google 검색 또는 URL 입력">
+        </div>
+
+        <div class="bottom">
+            <div class="site-box">
+                <div>
+                    <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+                    <p>다음</p>
+                </div>
+                <div>
+                    <img src="https://cdn.icon-icons.com/icons2/2622/PNG/512/brand_nike_icon_157863.png" alt="">
+                    <p>나이키</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+                <div>
+                    <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
+                        alt="">
+                    <p>노브랜드</p>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

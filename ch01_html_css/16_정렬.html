@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정렬</title>
+    <style>
+        div {
+            /* 레이아웃을 짤 때 태그 범위를 보면서 할 수 있음. */
+            border: 1px solid black;
+        }
+
+        .box {
+            height: 150px;
+        }
+
+        .box img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .top {
+            /* 내부 line들이 수평이동. */
+            text-align: center;
+        }
+
+        .middle {
+            width: 400px;
+            height: 100px;
+            text-align: center;
+            /*  margin auto : margin이 적용되는 태그 자체가 이동한다.*/
+            /* display: block이어야 하며 수평이동만 된다, */
+            margin: auto;
+        }
+
+        .bottom {
+            /* 내부요소가 inline이든 block이든 싹다 inline로 만들어서 정렬시킬 수 있다. */
+            display: flex;
+            justify-content: center;
+        }
+
+        .div-icon {
+            width: 100px;
+            height: 100px;
+            background-image: url("https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            /* 수직정렬 */
+            align-items: center;
+        }
+
+        .final{
+            width: 400px;
+            height: 100px;
+            text-align: center;
+
+            /* left, top의 50%는 부모 크기의 절반 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /* translate의 -50%는 본인 크기의 절반 */
+            transform: translate(-50%, -50%);
+        }
+
+        .p-rel{
+            position: relative;
+
+        }
+
+        .nav-bar{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+    </style>
+</head>
+
+<body>
+    dispaly: inline인 내부 요소들 수평정렬
+    <div class="box top">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+    </div>
+    display: block인 요소 자체 수평정렬
+    <div class="box">
+        <div>
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        </div>
+    </div>
+    flex를 이용한 내부요소 수평정렬
+    <div class="box bottom">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+    </div>
+    <div class="box bottom">
+        <div class="div-icon"></div>
+        <div class="div-icon"></div>
+        <div class="div-icon"></div>
+    </div>
+    flex를 이용한 내부요소 수평+수직 정렬
+    <div class="box footer">
+        <div class="div-icon"></div>
+        <div class="div-icon"></div>
+        <div class="div-icon"></div>
+    </div>
+    position을 이용한 자체 요소 가운데 정렬
+    <div class="box p-rel">
+        <div class="final">
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+            <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <img width="100px" height="60px" src="https://cdn-icons-png.flaticon.com/512/732/732107.png?w=360" alt="">
+        <div>
+            <a href="">회사소개</a>
+            <a href="">비지니스</a>
+            <a href="">서비스</a>
+            <a href="">커뮤니티</a>
+        </div>
+
+        <div>
+            <img height="40px" width="50px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0JLfCKedV2W-DlcopeAp9hTG6JVuRrC52BmxaDp7D&s" alt="">
+            <img width="50px" src="https://png.pngtree.com/png-vector/20190120/ourmid/pngtree-menu-vector-icon-png-image_470444.jpg" alt="">
+        </div>
+
+    </div>
+</body>
+
+</html>
