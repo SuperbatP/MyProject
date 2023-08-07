@@ -5,8 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>정렬(구글)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Orbit&display=swap" rel="stylesheet">
+
+
+
     <style>
-        
+        div {
+            border: 1px solid;
+        }
 
         .hearder img {
             border-radius: 25px;
@@ -56,6 +65,7 @@
 
         .bottom {
             height: 200px;
+            border: 0px;
         }
 
         .site-box {
@@ -70,7 +80,7 @@
             justify-content: center;
         }
 
-        .site-box>div:hover {
+        .site-box>a:hover {
             background-color: gainsboro;
         }
 
@@ -80,7 +90,7 @@
             border-radius: 20px;
         }
 
-        .site-box>div {
+        .site-box>a {
             width: 120px;
             height: 100px;
             display: flex;
@@ -88,11 +98,41 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .site-box > a > p {
+            color: black;
         }
 
         .site-box p {
             margin: 5px;
+            /* 글자 크기 조정 */
+            font-size: 15px;
+            /* 폰트 설정 영문자 기준이라 한글에는 잘 안먹힘.*/
+            /* 폰트명에 공백이 포함되어 있으면 작은 따옴표나 큰 따옴표로 둘러 싸준다. */
+            /* ex)'Courier New' */
+            /* 폰트명을 여러개 적어놓으면 왼쪽부터 차례대로 폰트가 적용되는데, 첫번째 폰트가 적용이 되었다면 이후 폰트는 무시. */
+            font-family: 'Orbit', sans-serif;
+
+        }
+
+        .fixed-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            /* padding : 상하 좌우 값 */
+            padding: 10px 15px;
+            border: 0;
+            box-shadow: 0px 0px 5px 1px gainsboro;
+            border-radius: 20px;
+            color: rgb(14, 14, 134);
+            cursor: pointer;
+        }
+
+        .fixed-btn:hover {
+            background-color: #fafafa;
+            /* 해쉬코드 #000: black , #ffffff: white, #999=#eeeeee: gray */
         }
     </style>
 </head>
@@ -116,59 +156,59 @@
 
         <div class="bottom">
             <div class="site-box">
-                <div>
+                <a href="https://www.daum.net/">
                     <img src="https://blog.kakaocdn.net/dn/bWMx1B/btroABI203N/FRMPOigHkkNlmNb3ZQ12j0/img.png" alt="">
                     <p>다음</p>
-                </div>
-                <div>
+                </a>
+                <a href="https://www.nike.com/kr/">
                     <img src="https://cdn.icon-icons.com/icons2/2622/PNG/512/brand_nike_icon_157863.png" alt="">
                     <p>나이키</p>
-                </div>
-                <div>
+                </a>
+                <a href="https://emart.ssg.com/specialStore/nobrand/main.ssg?ckwhere=e_ggbr&EKAMS=google.272.5085.24327.2063893.600428190&trackingDays=1&gclid=Cj0KCQjwoK2mBhDzARIsADGbjepp36GfY7wUW7gZC0C4Oq2vh-QL7thpF39VPB6TN5CmOdugGxy4iJQaAuNTEALw_wcB">
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
-                <div>
+                </a>
+                <a>
                     <img src="https://post-phinf.pstatic.net/MjAxOTA0MTdfMjMg/MDAxNTU1NDYzNzY5Njk3.HBQ3pmZxqLQi0dtg1lo0hrPeoRpVDGn5H7HrM83ZsBAg.4gDyt-h1RB80o-19Z8LqJS0t1G3y9iAW6ZHdLzJu770g.PNG/IY4VKPuudHhI7PCsy7YEIHzONCWM.jpg?type=w400"
                         alt="">
                     <p>노브랜드</p>
-                </div>
+                </a>
             </div>
-
         </div>
-
-
+        <div class="fixed-btn">
+            Chrome 맞춤설정
+        </div>
     </div>
 
 </body>

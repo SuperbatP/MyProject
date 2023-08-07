@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fiter</title>
+    <!-- 보통 image에 필터를 사용함. -->
+    <style>
+        img {
+            width: 400px;
+        }
+
+        .f-blur {
+            /* 블러처리. 단위는 px */
+            filter: blur(5px);
+        }
+
+        .f-contrast {
+            /* 대비 % */
+            filter: contrast(150%);
+        }
+
+        .f-grayscale {
+            /* 흑백처리 100%면 흑백이됨. */
+            filter: grayscale(70%);
+        }
+
+        .f-brightness {
+            /* 밝기 낮을수록 값이 어두움.*/
+            filter: brightness(200%);
+        }
+
+        .f-custom {
+            /* 한번에 여러개의 필터를 적용가능. */
+            filter: brightness(50%) contrast(200%);
+        }
+
+        .item-box {
+            width: 1300px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            justify-content: space-around;
+        }
+
+        /* 블러처리 된 이미지를 마우스 올리면 깨끗해지게 함. */
+        .item-box>img:hover {
+            filter: blur(0px) brightness(150%)
+        }
+
+        .btn {
+            background-color: salmon;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+
+            /* div는 inline로 하면서 div 내부요소를 flex로 정렬 */
+            display: inline-flex;
+            /* 마우스 커서 가져가 되면 커서가 손가락으로 바뀜 */
+            cursor: pointer;
+            /* 드래그 막는 법 4줄 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .btn:hover {
+            /* background-color: rgb(138, 70, 63);  특정값을 줘도 되지만, filter로 밝기를 낮춰도 된다.*/
+            /* 이미지태그가 아니어도 필터 적용. */
+            filter: brightness(80%);
+        }
+
+        /* 모든 내용 드래그 방지. html에 적용 */
+        html{
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    블러
+    <div>
+        <img src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+    </div>
+    대조
+    <div>
+        <img src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+        <img class="f-contrast" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+    </div>
+    흑백처리
+    <div>
+        <img src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+        <img class="f-grayscale" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+    </div>
+    밝기
+    <div>
+        <img src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+        <img class="f-brightness"
+            src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+    </div>
+    custom
+    <div>
+        <img src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg" alt="">
+        <img class="f-custom" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+    </div>
+    <div class="item-box">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+        <img class="f-blur" src="https://media.bunjang.co.kr/product/105722375_%7Bcnt%7D_1661554629_w%7Bres%7D.jpg"
+            alt="">
+    </div>
+
+    <div class="btn">
+        로그인/회원가입
+    </div>
+</body>
+
+</html>

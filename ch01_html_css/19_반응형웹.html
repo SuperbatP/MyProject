@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형웹</title>
+    <style>
+        div {
+            border: 1px solid;
+        }
+
+        .container {}
+
+        .navibar {
+            /* block->inline로 바꿔줌. */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navibar a {
+            text-decoration: none;
+            color: salmon;
+            font-size: 20px;
+            /* 중앙으로 수직정렬 -> a 태그 위에 줘야함. */
+            margin: 5px;
+        }
+
+        .navibar>div {
+            /* 중앙 수직정렬 그냥 외워*/
+            display: flex;
+            align-items: center;
+        }
+
+        .item-box {
+            /* item의 것들을 한 줄로 표현  */
+            display: flex;
+            /* 본인의 사이즈를 넘어가면 줄바꿈 */
+            flex-wrap: wrap;
+            /* item에서 넣어준 여백을 분산*/
+            justify-content: space-between;
+        }
+
+        .item {
+            height: 300px;
+            border: 0;
+            border-radius: 20px;
+            box-shadow: 0px 0px 4px 4px gainsboro;
+            /* 조금씩 공백 주는 것 width에 공백 값을 -로 넣어줌. */
+            width: calc(100%/4 - 10px);
+            /* item에 밑 margin을 주면 떨어짐.  */
+            margin-bottom: 20px;
+        }
+
+
+
+        .item>div:nth-child(1) {
+            /* 여러개 있는 div에 대해 특정 자식만 선택. nth-child(원하는 자식 순서) */
+            height: 60%;
+            overflow: hidden;
+            /* line-block 정렬이니까 */
+            text-align: center;
+
+        }
+
+        .item>div:nth-child(2) {
+            /* 여러개 있는 div에 대해 특정 자식만 선택. nth-child(원하는 자식 순서) */
+            height: 40%;
+            /* 수직정렬 */
+            display: flex;
+            align-items: center;
+            /* 수평정렬 */
+            justify-content: center;
+        }
+
+        .item img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .item p {
+            font-size: 20px;
+        }
+
+        .serch-bar {
+            /* input tag는 inline text-align으로 정렬 */
+            text-align: center;
+        }
+
+        .serch-bar>input {
+            width: 70%;
+            /* 너비의 최소값 지정 : 이 최소값 밑으로는 너비가 줄어들지 않는다. */
+            min-width: 200px;
+        }
+
+        /* 화면이 줄어들었을 때, 한 줄에 item이 3개씩 차지하게 변경 -> width: calc(100%/4 - 10px);의 값을 수정해주면 됨.*/
+        /* 현재 화면의 크기가 1000px 이하인 경우 */
+        /* @는 쿼리라고 하며, 적용될 클래스 밑에 존재해야 작동. 아예 style 맨 밑에 두는 게 좋다. */
+        @media (max-width:1000px) {
+            .item {
+                width: calc(100%/3 - 10px);
+            }
+        }
+
+        @media (max-width:600px) {
+            .item {
+                width: calc(100%/2 - 10px);
+            }
+        }
+
+        @media (max-width:300px) {
+            .item {
+                width: calc(100% - 10px);
+            }
+
+            .navibar a {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navibar">
+            <h1>반응형웹</h1>
+            <div>
+                <a href="">게시판</a>
+                <a href="">로그인</a>
+                <a href="">회원가입</a>
+            </div>
+        </div>
+        <div class="serch-bar">
+            <input type="text">
+        </div>
+        <div class="item-box">
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+            <div class="item">
+                <div> <img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt=""> </div>
+                <div>
+                    <p>팝니다</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
