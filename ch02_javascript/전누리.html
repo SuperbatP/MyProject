@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEONNURI</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 320px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px gray;
+            padding-top: 30px;
+        }
+
+        .container>div:nth-child(4) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container h1 {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin-left: 40px;
+        }
+
+        .itemBox {
+            display: flex;
+            margin: 20px;
+        }
+
+        .itemBox>div {
+            justify-content: start;
+            align-items: center;
+            margin-right: 40px;
+        }
+
+        .itemBox>div>input {
+            width: 200px;
+        }
+
+        .gender {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .radioBox {
+            margin-right: 20px;
+        }
+
+
+        .calcbutton {
+            width: 90%;
+            height: 40px;
+            font-weight: bolder;
+            background-color: rgb(0, 162, 255);
+            border-radius: 10px;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container" id="result">
+
+        <h1>표준 체중 계산기</h1>
+
+        <div class="itemBox">
+            <div>
+                <p> 키(cm):</p>
+                <input type="text" id="height">
+            </div>
+            <div>
+                <p> 체중(kg):</p>
+                <input type="text" id="weight">
+            </div>
+        </div>
+
+        <div class="gender">
+            <div class="radioBox">
+                남성<input type="radio" name="gender" value="male" checked>
+            </div>
+            <div>
+                여성<input type="radio" name="gender" value="female">
+            </div>
+        </div>
+
+        <div>
+            <div class="calcbutton" onclick="f_result()">계산하기</div>
+        </div>
+    </div>
+
+
+    <script>
+        const v_result = document.getElementById("result");
+        const v_gender = document.getElementsByName("gender");
+        const v_height = document.getElementById("height");
+        const v_weight = document.getElementById("weight");
+        let genderChecked = '';
+        let v_Sweight = 0;
+        let v_Obesity = 0;
+        let v_ObesityCheaked = "";
+
+
+        function f_genderChecked() {
+            for (let i = 0; i < v_gender.length; i++) {
+                if (v_gender[i].checked) {
+                    genderChecked = v_gender[i].value;
+                }
+            }
+        }
+
+        function f_StandardWeight() {
+            /* 남성 키(m)* 키(m)* 22
+            여성 키(m)* 키(m)* 21 */
+            f_genderChecked();
+            if (v_gender[0].checked) {
+                v_Sweight = (v_height.value / 100) * (v_height.value / 100) * 22;
+            } else {
+                v_Sweight = (v_height.value / 100) * (v_height.value / 100) * 21;
+            }
+
+        }
+
+        function f_Obesity() {
+            /* 체중/표준체중*100% */
+            v_Obesity = v_weight.value / v_Sweight * 100;
+            console.log(v_Obesity);
+        }
+
+        function f_ObesityCheaked() {
+
+            if (v_Obesity < 90) {
+                v_ObesityCheaked = "저체중";
+            } else if (90 <= v_Obesity && v_Obesity < 110) {
+                v_ObesityCheaked = "정상체중";
+            } else if (110 <= v_Obesity && v_Obesity < 120) {
+                v_ObesityCheaked = "과체중";
+            } else if (120 <= v_Obesity && v_Obesity < 130) {
+                v_ObesityCheaked = "경도 비만";
+            } else if (130 <= v_Obesity && v_Obesity < 130) {
+                v_ObesityCheaked = "중경도 비만";
+            } else if (140 <= v_Obesity && v_Obesity < 130) {
+                v_ObesityCheaked = "고도 비만";
+            }
+            console.log(v_ObesityCheaked);
+        }
+
+        function f_result() {
+            f_StandardWeight();
+            f_Obesity();
+            f_ObesityCheaked();
+            v_result.innerHTML = "<br>적합한 표준 체중은 " + Math.floor(v_Sweight) + "kg 이며, <br> " + "<br><br>현재 비만도는 " + v_ObesityCheaked + "입니다.";
+
+            v_result.style.fontSize = "30px"; // 폰트 크기 변경
+            v_result.style.color = "black";    
+            v_result.style.fontWeight = "bold";
+            v_result.style.textAlign = "center"
+    
+        }
+
+    </script>
+
+</body>
+
+</html>

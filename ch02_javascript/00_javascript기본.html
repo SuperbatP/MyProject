@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript기본</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <!-- body태그가 닫히는 곳 위에 위치시키는 것을 지향 -->
+    <script>
+        //자바랑 주석이 동일
+        // 콘솔창에 값 출력 ; 써야함.
+        console.log("Hello World!!");
+
+        // 변수 선언(레거시) 타입이랑 상관없이 선언시 앞에 var을 붙여준다. 전역변수로 선언되듯이 동작.
+        // 동일한 변수명을 중복 선언해도 그냥 덮어씀. 실수로 기존에 선언된 변수명을 덮어쓰는 경우가 있다.
+        var age = 20;
+
+        // 신식 방법(ES6)
+        // 변수의 스코프가 잘 적용된다.
+        let money = 1000;
+
+        console.log(age);
+        console.log(money);
+
+        var age = 37;
+        console.log(age);
+
+        // let money = 1000; 같은 변수에 선언시 에러발생.
+
+        // 상수 선언 정해진 값.
+        const name = "호빵맨";
+        // name ="찐빵맨"; 실행시 에러가 발샐
+        console.log(name);
+
+        // 문자열에 변수 값 넣기 "" 또는 ''를 써서 문자열 표현. 둘 다 가능
+        console.log("이름은 " + name + '이고, 나이는 ' + age + '살 입니다.');
+
+        // ES6 버전 문자열에 변수 값 넣기
+        //백틱(`) 문자를 사용(스프링 JSP 구문 중 EL문 ${}과 혼용이 잘 안된다.)
+        console.log(`이름은 ${name}이고, 나이는 ${age}살 입니다.`);
+
+        console.log('---------------------------------------------------------------------');
+
+        // 문자열(String) 메소드
+        console.log(name.length);
+
+        // 문자열 인덱스
+        console.log(name[1]);
+
+        // 특정 문자열 교체 (바꾸고 싶은 글자, 바꿀 글자)
+        console.log(name.replace('호', '찐'));
+
+        // 원본 문자열을 바꾸지는 않는다. 출력창에만 바뀔뿐 가지고 있는 값은 변화없음.
+        console.log(name);
+
+        let banana = 'banana'
+        // replace는 처음에 잡힌 문자만 변경해준다.
+        console.log(banana.replace("a", "e"));
+        // 반복된 문자에 대해 변경은 replaceAll.
+        console.log(banana.replaceAll("a", "e"));
+
+        // 문자열 자르기(시작인덱스 , 자를 글자'수') -> ex)(7,4) ; 7번인덱스 시작해서 4글자.
+        let hamburger = "자이언트모짜렐라인더버거";
+        console.log(hamburger.substr(1, 4));
+        console.log(hamburger.substr(7, 4));
+
+        // 해당 문자열에서 특정 문자열의 인덱스를 리턴. 찾는 글자가 없을땐 '-1' 리턴. 공백은 '0' 리턴.
+        console.log(hamburger.indexOf('렐'));
+        console.log(hamburger.indexOf('갑'));
+        console.log(hamburger.indexOf(''));
+
+        console.log('---------------------------------------------------------------------');
+
+        // 조건문 조건식 안에 boolean(true/false) 외에도 숫자, 문자열, 객체 등을 넣을 수 있다.
+        if (age > 14) {
+            console.log('14세 이상입니다.');
+        } else {
+            console.log('14세 이하입니다.');
+        }
+
+        // 0 = false / true ; 그 외 숫자
+        money = 0;
+        if (money) {
+            console.log("true");
+        } else {
+            console.log("false");
+        }
+
+        // 빈문자열 = false / 공백(띄어쓰기) = true
+        let empty = " ";
+        if (empty) {
+            console.log("true");
+        } else {
+            console.log("false");
+        }
+
+        // undefined 객체의 경우 false에 해당
+        console.log(option);
+        if (option) {
+            console.log("true");
+        } else {
+            console.log("false");
+        }
+        var option = 3;
+
+        //선언만 하고 값을 넣지 않으면 undefined.
+        let test;
+        console.log(test);
+
+        // null = false
+        let brain = null;
+        if (null) {
+            console.log("true");
+        } else {
+            console.log("false");
+        }
+
+        // 논리연산자 지원
+        if (20 < age && age < 40) {
+            console.log("청년");
+        }
+
+        let phone = "01012345678"
+        if (phone.length == 11 || phone.length == 10) {
+            console.log("정상적인 휴대폰 번호");
+        }
+
+        console.log('---------------------------------------------------------------------');
+
+        // 숫자를 문자열로 바꾸기
+        let price = 1200;
+        // 변수의 타입 확인
+        console.log(typeof price); //number 출력
+
+        // 1200->"1200"
+        let strPrice = price + "";
+        console.log(strPrice);
+        console.log(typeof strPrice);
+
+        price = price + 10;
+        console.log(price);
+
+        strPrice = strPrice + 10;
+        console.log(strPrice);
+
+        // 숫자 문자열을 숫자로 변환
+        let numPrice = parseInt(strPrice);
+        console.log(numPrice);
+        console.log(typeof numPrice);
+        
+        // 위에서 공백 적어준 것처럼, *1이나 /1해주면 숫자 문자열을 숫자열로 반환
+        numPrice = strPrice*1;
+        console.log(numPrice);
+        console.log(typeof numPrice);
+        console.log('---------------------------------------------------------------------');
+
+        //반복문-for문
+        for(var i = 0; i<10; i++){
+            console.log(i);
+        }
+
+        let j =0;
+        while(j<10){
+            console.log(j);
+            j++;
+        }
+
+        document.write(3);
+        document.write("구구단");
+
+        for(var i = 1; i<10; i++){
+            document.write("<h1>"+i+'단'+"</h1>");
+        
+            
+            for(var  k= 1; k<10; k++){
+                var result = k*i;
+                document.write("<h1>" + k +"x"+ i +'='+ result  + "</h1>");
+            }
+        } 
+
+
+
+ 
+
+
+    </script>
+</body>
+
+</html>

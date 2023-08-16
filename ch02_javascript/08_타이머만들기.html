@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머만들기</title>
+</head>
+
+<body>
+    <div id="clock"></div>
+    <button onclick="f_stop()">정지</button>
+
+    <script>
+        const v_clock = document.getElementById("clock");
+        function f_showTime() {
+            let v_date = new Date();
+
+            console.log("년 : " + v_date.getFullYear());
+            console.log("월 : " + (v_date.getMonth() + 1)); //숫자 연산이 먼저 일어난 후 문자와 결합할 수 있게 () 표시함.
+            console.log("일 : " + v_date.getDate());
+            console.log("요일 : " + v_date.getDay()); // 일요일 : 0, 월요일 : 1.... 토요일 : 6
+
+            console.log("시 : " + v_date.getHours());
+            console.log("분 : " + v_date.getMinutes());
+            console.log("초 : " + v_date.getSeconds());
+            //시, 분, 초가 한 자리수면 앞에 0을 붙여주기 ex) 5초 -> 05초
+            let v_hour = v_date.getHours();
+            if (v_hour < 10) v_hour = "0" + v_hour; //실행문이 한 줄이면 중괄호 생략가능.
+            
+            let v_min = v_date.getMinutes();
+            (v_date.getMinutes() < 10) ? ("0" + v_date.getMinutes()) : (v_date.getMinutes());
+
+            let v_sec = v_date.getSeconds();
+            v_date.getSeconds() < 10 ? "0" + v_date.getSeconds() : v_date.getSeconds();
+
+            v_clock.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+
+            
+        }
+        //함수를 주어진 간격으로 무한 반복 실행
+       let v_timer = setInterval(f_showTime, 1000);
+
+        function f_stop(){
+            clearInterval(v_timer);
+            //함수 멈출때는 clear을 쓰는 데, Interval은 clearInterval 사용
+        }
+    </script>
+</body>
+
+</html>
