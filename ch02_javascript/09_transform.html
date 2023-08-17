@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform</title>
+    <style>
+        .container {
+            width: 1000px;
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .container>div {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #roulette {
+            transform: rotate(0deg);
+        }
+
+        #coin {
+            width: 150px;
+            height: 150px;
+            background-color: gold;
+            border: 10px solid goldenrod;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 60px;
+            color: goldenrod;
+            font-weight: bold;
+
+            transform: rotateY(45deg);
+        }
+
+        #earth {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: blue;
+            margin: 30px;
+           
+        }
+
+        #moon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: yellow;
+
+            /* 지구를 중심으로 회전축 설정. */
+            transform-origin: -90px center;
+            /* 이때 지구의 중심의 위치는 지구의 사이즈와 마진값을 사용해 구한다. */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <img id="roulette" onclick="f_rotate()" height="100%" src="../resources/images/roulette.png" alt="">
+        </div>
+        <div>
+            <div id="coin" onclick="f_rotateY()">$</div>
+        </div>
+
+        <div class="space">
+            <div id="earth"></div>
+            <div id="moon" onclick="f_moon()"></div>
+        </div>
+    </div>
+
+    <script>
+
+        const v_roulette = document.getElementById("roulette");
+        const v_coin = document.getElementById("coin");
+        const v_moon = document.getElementById("moon");
+        let c_deg = 0;
+        let v_deg = 0;
+        let m_deg = 0;
+
+        function f_rotate() {
+            v_deg += 10;
+            v_roulette.style.transform = "rotate(" + v_deg + "deg)";
+
+            setTimeout(f_rotate, 50);
+        }
+
+        function f_rotateY() {
+            c_deg += 5;
+            v_coin.style.transform = "rotateY(" + c_deg + "deg)";
+
+            setTimeout(f_rotateY, 50);
+        }
+
+        function f_moon() {
+            m_deg += 10;
+            v_moon.style.transform = "rotateY(" + m_deg + "deg)";
+            setTimeout(f_moon, 30);
+        }
+
+    </script>
+
+</body>
+
+</html>

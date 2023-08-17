@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간게이지</title>
+    <style>
+        #bar {
+            width: 200px;
+            height: 30px;
+            border: 2px solid black;
+        }
+
+        #timer {
+            width: 100%;
+            height: 100%;
+            background-color: salmon;
+        }
+
+        .container {
+            display: flex;
+        }
+        img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=container>
+        <div id="count">30</div>
+        <div id="bar">
+            <div id="timer"></div>
+        </div>
+        <img onclick="f_reset()" width="30" heidth="30"
+            src="https://png.pngtree.com/element_our/20190528/ourmid/pngtree-arrow-icon-image_1174272.jpg" alt="">
+    </div>
+
+
+    <script>
+        const v_conut = document.getElementById("count");
+        const v_timer = document.getElementById("timer");
+        let cnt;
+
+        function f_time() {
+            // 문자열 30을 숫자로 변환
+            cnt = parseInt(v_conut.innerHTML);
+            cnt--;
+            v_conut.innerHTML = cnt;
+
+            let ratio = cnt / 30 * 100;
+            v_timer.style.width = ratio + "%";
+
+
+            if (cnt == 0) {
+                return;
+            }
+            setTimeout(f_time, 1000);
+        }
+
+        // 1초후에 실행(사용자가 볼 수 있게)
+        setTimeout(f_time, 1000);
+
+        function f_reset(){
+            cnt = 30;
+            v_conut.innerHTML = cnt;
+            v_timer.style.width ="100%";
+        }
+
+    </script>
+</body>
+
+</html>

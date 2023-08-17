@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEONNURI</title>
+    <title></title>
     <style>
         .container {
             width: 500px;
@@ -52,7 +52,6 @@
         .radioBox {
             margin-right: 20px;
         }
-
 
         .calcbutton {
             width: 90%;
@@ -129,7 +128,6 @@
             } else {
                 v_Sweight = (v_height.value / 100) * (v_height.value / 100) * 21;
             }
-
         }
 
         function f_Obesity() {
@@ -139,7 +137,6 @@
         }
 
         function f_ObesityCheaked() {
-
             if (v_Obesity < 90) {
                 v_ObesityCheaked = "저체중";
             } else if (90 <= v_Obesity && v_Obesity < 110) {
@@ -153,7 +150,6 @@
             } else if (140 <= v_Obesity && v_Obesity < 130) {
                 v_ObesityCheaked = "고도 비만";
             }
-            console.log(v_ObesityCheaked);
         }
 
         function f_result() {
@@ -163,10 +159,9 @@
             v_result.innerHTML = "<br>적합한 표준 체중은 " + Math.floor(v_Sweight) + "kg 이며, <br> " + "<br><br>현재 비만도는 " + v_ObesityCheaked + "입니다.";
 
             v_result.style.fontSize = "30px"; // 폰트 크기 변경
-            v_result.style.color = "black";    
+            v_result.style.color = "black";
             v_result.style.fontWeight = "bold";
             v_result.style.textAlign = "center"
-    
         }
 
     </script>
