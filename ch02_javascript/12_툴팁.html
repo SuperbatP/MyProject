@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>툴팁(tooltip)</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 600px;
+            border: 1px solid black;
+            margin: auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip-text {
+            position: absolute;
+            top: 105%;
+            left: calc(100% + 15px);
+            background-color: bisque;
+
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+
+            display: none;
+        }
+
+
+        .tooltip-text2 {
+            position: absolute;
+            top: -105%;
+
+            background-color: bisque;
+
+            width: 100px;
+            text-align: center;
+            border-radius: 5px;
+
+            display: none;
+        }
+
+        /* tooltip에 hover를 주고, 그 때 tooltip-text를 보이게 함. */
+        /*  tooltip-text 클래스에 스타일 적용 */
+        .tooltip:hover .tooltip-text {
+            display: block;
+        }
+
+        /* 말풍선 꼬리 만들기 */
+        .tooltip-text::after {
+            /* ::after ->클래스에 div처럼 그룹을 하나 만들어준다고 생각... */
+            content: " ";
+            position: absolute;
+            top: 10%;
+            right: 100%;
+
+            width: 0;
+            height: 0;
+
+            border: 5px solid;
+            border-color: transparent bisque transparent transparent;
+        }
+
+        .tooltip-text2::after {
+            /* ::after ->클래스에 div처럼 그룹을 하나 만들어준다고 생각... */
+            content: " ";
+            position: absolute;
+
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+
+            width: 0;
+            height: 0;
+
+            border: 5px solid;
+            border-color: bisque transparent transparent transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div title="대머리">무료툴팁</div>
+        <div class="tooltip">나만의 툴팁
+            <div class="tooltip-text">무료보다 낫네</div>
+            <div class="tooltip-text2">정말 매우 낫네</div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
