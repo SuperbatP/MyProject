@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS로동적태그생성</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 900px;
+            border: 2px solid black;
+            margin: auto;
+        }
+
+        .chat {
+            height: 90%;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow-y: scroll;
+        }
+
+        .chat::-webkit-scrollbar{
+            width: 15px;
+        }
+        .chat::-webkit-scrollbar-thumb{
+            background-color: gainsboro;
+            border-radius: 8px;
+        }
+        .chat::-webkit-scrollbar-thumb:hover{
+            border-radius: 18px;
+            background-color: gray;
+        }
+
+        .input-box {
+            height: 10%;
+            border-top: 1px solid black;
+            display: flex;
+        }
+
+        .input-box>input[type=text] {
+            width: 80%;
+            height: 90%;
+            border: 0;
+        }
+
+        .input-box>button {
+            width: 20%;
+            height: 100%;
+            background-color: yellow;
+            font-size: 20px;
+        }
+
+        .msg {
+            background-color: yellow;
+            padding-left: 6px;
+            padding-right: 6px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        .me {
+            text-align: end;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="chat"></div>
+        <div class=input-box>
+            <input id="message" type="text" onkeydown="f_keydown()">
+            <button onclick="f_send()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        const v_message = document.getElementById("message");
+        const v_chat = document.getElementsByClassName("chat")[0];
+
+        function f_send() {
+            let v_val = v_message.value;
+            v_chat.innerHTML += "<div class='me'><span class='msg'>" + v_val + "</span></div>";
+            v_message.value = " ";  //채팅 입력창 빈 공간으로 만듦.
+
+            // 채팅창의 스크롤이 맨 밑을 가르킬 수 있게.
+            v_chat.scrollTop = v_chat.scrollHeight;
+
+            //input 태그 활성화
+            v_message.focus();
+        }
+
+        //해당 input태그에 focus 중일 때(커서 활성화) 키를 입력하면 onkeydown 이벤트가 실행
+        function f_keydown() {
+            
+            //qu
+            console.log(event.target);
+            console.log(event.key); //키 매핑 기준이 애매모호 하다.
+            console.log(event.code); 
+            console.log(event.keyCode); //글자 매핑보다 숫자 매핑이 간단하다.
+               //Enter 입력하면 전송되게끔.
+               if(event.keyCode == 13){
+                f_send();
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>createElement</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 900px;
+            border: 2px solid black;
+            margin: auto;
+        }
+
+        .chat {
+            height: 90%;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow-y: scroll;
+        }
+
+        .chat::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        .chat::-webkit-scrollbar-thumb {
+            background-color: gainsboro;
+            border-radius: 8px;
+        }
+
+        .chat::-webkit-scrollbar-thumb:hover {
+            border-radius: 18px;
+            background-color: gray;
+        }
+
+        .input-box {
+            height: 10%;
+            border-top: 1px solid black;
+            display: flex;
+        }
+
+        .input-box>input[type=text] {
+            width: 80%;
+            height: 90%;
+            border: 0;
+        }
+
+        .input-box>button {
+            width: 20%;
+            height: 100%;
+            background-color: yellow;
+            font-size: 20px;
+        }
+
+        .msg {
+            background-color: yellow;
+            padding-left: 6px;
+            padding-right: 6px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        .me {
+            text-align: end;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="chat"></div>
+        <div class=input-box>
+            <input id="message" type="text">
+            <button onclick="f_send()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        const v_message = document.getElementById("message");
+        const v_chat = document.getElementsByClassName("chat")[0];
+
+        function f_send() {
+            let v_val = v_message.value;
+
+            // 빈 div 태그 생성
+            let v_div = document.createElement("div");
+            //div 태그에 클래스 추가
+            v_div.classList.add("me");
+
+            let v_span = document.createElement("span");
+            v_span.classList.add("msg");
+            v_span.innerHTML = v_val;
+
+            //태그 객체 안에 태그 객체 넣기(자식추가)
+            v_div.appendChild(v_span);
+            v_chat.appendChild(v_div);      
+
+            v_message.value = " ";
+            v_chat.scrollTop = v_chat.scrollHeight;
+            v_message.focus();
+
+            //위의 과정은 아래의 코드를 다른 방법으로 표현
+            //v_chat.innerHTML += "<div class='me'><span class='msg'>" + v_val + "</span></div>";
+        }
+
+        v_message.addEventListener("keydown", function(){
+            if(event.keycode == 13){
+                f_send();
+            }
+        })
+        
+    </script>
+
+</body>
+
+</html>
