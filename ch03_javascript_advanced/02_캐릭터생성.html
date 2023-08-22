@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐릭터생성</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 600px;
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .list>img {
+            width: 200px;
+            height: 200px;
+            border: 4px solid black;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .menu {
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="list">
+            <img class="char"
+                src="https://static.ebs.co.kr/images/public/lectures/2014/06/19/10/bhpImg/44deb98d-1c50-4073-9bd7-2c2c28d65f9e.jpg"
+                alt="">
+            <img class="char" src="https://img.segye.com/content/image/2021/07/29/20210729513138.jpg" alt="">
+            <img class="char"
+                src="https://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723572507_BOtiBfIuyL.jpg"
+                alt="">
+            <img class="char"
+                src="https://i.namu.wiki/i/lCE4Wgbhg4Qr4ZPVLFkkCalIDX3g59mByPnri_2O_bD36WRFsAZHYrpQ1mGI6p2FDROlCTUjARTQCxYXCPgccQ.webp"
+                alt="">
+            <img class="char"
+                src="https://i.namu.wiki/i/xwnPK2WXiEkbOMOQS17d0lLV42yMSODMdND3Si1XEz65qbkY81hRGKHhVCfK7CqBCRMyJB6Wj3ro_C7DiVNAKQ.webp"
+                alt="">
+            <img class="char" src="https://blog.kakaocdn.net/dn/b3kP2m/btqGh4gHsX2/aXqXnHDSCOGV6TR4QCA80k/img.jpg"
+                alt="">
+        </div>
+        <div class="menu">
+            <input id="inputName" type="text" placeholder="캐릭터명">
+            <button onclick="f_confirm()">선택완료</button>
+        </div>
+    </div>
+    <script>
+        const v_char = document.getElementsByClassName("char");
+        const v_name = document.getElementById("inputName");
+
+        let v_slectedSrc = "";
+        //각 img 태그들에 클릭 이벤트 부여
+        for (let i = 0; i < v_char.length; i++) {
+            v_char[i].addEventListener("click", () => {
+                console.log(event.target);
+                console.log(event.target.src);
+                v_slectedSrc = event.target.src;
+                f_init();
+                event.target.style.border = "4px solid red";
+            })
+        }
+
+        function f_init() {
+            for (let i = 0; i < v_char.length; i++) {
+                v_char[i].style.border = "4px solid black";
+            }
+        }
+
+        function f_confirm() {
+            //현재 선택한 캐릭터의 이미지와 입력한 캐릭터명을 localStorage에 저장.
+            //데이터 구조 : [src:v_slectedSrc , name:v_name.value]
+            //배열에 캐릭터를 담아서 localStorage에 저장
+
+            let v_db = JSON.parse(localStorage.getItem("character"));
+
+            if (v_db == null) {
+                let v_array = [];
+
+                let v_json = {};
+                v_json["src"] = v_slectedSrc;
+                v_json["name"] = v_name.value;
+
+                v_array.push(v_json);
+
+                localStorage.setItem("character", JSON.stringify(v_array));
+
+            } else {
+                let v_json = {};
+                v_json["src"] = v_slectedSrc;
+                v_json["name"] = v_name.value;
+
+                v_db.push(v_json);
+                
+                localStorage.setItem("character", JSON.stringify(v_db));         
+            }
+
+            location.href = "./02_캐릭터목록.html";
+        }
+    </script>
+</body>
+
+</html>
