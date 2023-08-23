@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrawerNavigation</title>
+    <style>
+        .container {
+            width: 1000px;
+            height: 800px;
+            border: 2px solid black;
+
+            margin: auto;
+            position: relative;
+
+            /* 넘치는 영역을 가림 */
+            overflow: hidden;
+        }
+
+        .drawer-nav {
+            /* 다른 태그를 덮으려면 position: absolute*/
+            width: 200px;
+            height: 100%;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            transform: translate(-105%, 0);
+            box-shadow: 4px 0px 4px 0px gainsboro;
+
+            background-color: #fff;
+        }
+
+        .allign-end {
+            text-align: end;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translate(-105%, 0);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 1s forwards;
+        }
+
+        @keyframes slideOut {
+
+            /* 0%->100% = from -> to */
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-105%, 0);
+            }
+        }
+
+        .slide-out {
+            animation: slideOut 1s forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img onclick="f_drawer()" width="50" height="50"
+            src="https://www.freeiconspng.com/thumbs/menu-icon/menu-icon-24.png" alt="">
+        <div class="drawer-nav">
+            <div class="allign-end">
+                <img onclick="f_close()" width="40" height="40" src="../resources/images/close.png" alt="">
+            </div>
+            <div>회사소개</div>
+            <div>오시는길</div>
+        </div>
+    </div>
+
+    <script>
+        const v_drawer = document.getElementsByClassName("drawer-nav")[0];
+
+        function f_drawer() {
+            //클래스 추가
+            v_drawer.classList.add("slide-in");
+            v_drawer.classList.remove("slide-out");
+        }
+
+        function f_close(){
+            v_drawer.classList.add("slide-out");
+            v_drawer.classList.remove("slide-in");
+        }
+    </script>
+</body>
+
+</html>

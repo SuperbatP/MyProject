@@ -12,7 +12,8 @@
             margin: auto;
             border: 1px solid black;
         }
-        .nav-bar{
+
+        .nav-bar {
             height: 100px;
             display: flex;
             justify-content: space-between;
@@ -20,22 +21,22 @@
             background-color: beige;
         }
 
-        .nav-bar a{
+        .nav-bar a {
             text-decoration: none;
             color: black;
             margin: 10px;
         }
 
-        .nav-bar > div{
+        .nav-bar>div {
             display: flex;
             align-items: center;
         }
 
-        .dropdown{
-          position: relative;
+        .dropdown {
+            position: relative;
         }
 
-        .drop-content{
+        .drop-content {
             position: absolute;
             top: 100%;
             background-color: white;
@@ -47,7 +48,7 @@
             visibility: hidden;
         }
 
-        .dropdown:hover .drop-content{
+        .dropdown:hover .drop-content {
             visibility: visible;
         }
     </style>
@@ -57,7 +58,9 @@
     <div class="container">
         <div class="nav-bar">
             <div>
-                <img height="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Daum_communication_logo.svg/2560px-Daum_communication_logo.svg.png" alt="">
+                <img height="80px"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Daum_communication_logo.svg/2560px-Daum_communication_logo.svg.png"
+                    alt="">
             </div>
             <div>
                 <a href="">회사소개</a>
@@ -66,12 +69,36 @@
                     <a class="dropbtn" href="">전누리님▼</a>
                     <div class="drop-content">
                         <a href="">프로필 수정</a>
-                        <a href="">로그아웃</a>
+                        <!-- href에 직접 함수 넣는 방법 -->
+                        <a href="javascript:f_logout();">로그아웃</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const v_dropbtn = document.getElementsByClassName("dropbtn")[0];
+        const v_content = document.getElementsByClassName("drop-content")[0];
+        //세션스토리지로부터 값 가져오기.
+        let v_id = sessionStorage.getItem("loginId");
+
+        if(v_id != null){
+            v_dropbtn.innerHTML = v_id + "님 ▼";
+        }else{
+            //로그인 상태가 아닐 때 프로필 수정/ 로그아웃 안보이게.(해당 태그를 문서 내에서 삭제한다.)
+            v_content.remove();
+        }
+
+        //로그아웃시 세션스토리지에 저장된 값을 삭제하고 새로고침함.
+        function f_logout(){
+            //세션스토리지의 값을 지워주면 그만.
+            sessionStorage.removeItem("loginId");
+            location.reload();
+        }
+
+
+    </script>
 </body>
 
 </html>
