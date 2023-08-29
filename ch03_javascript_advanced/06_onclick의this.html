@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick의 this</title>
+    <style>
+        .container{
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+            margin: auto;
+            position: relative;
+            display: flex;
+        }
+        
+        .point{
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: salmon;
+            position: absolute;
+        }
+
+        .card{
+            width: 200px;
+            height: 300px;
+            border: 2px solid salmon;
+        }
+
+        .card img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div onclick="f_click(this)" class="point" style="top:10%; left:10%;"></div>
+        <div onclick="f_click(this)" class="point" style="top:30%; left:40%;"></div>
+        <div onclick="f_click(this)" class="point" style="top:50%; left:20%;"></div>
+    </div>
+    <div class="container">
+        <div class="card" onclick="f_card(this)">
+            <img src="https://i2.ruliweb.com/img/5/5/2/E/552E46DA355A3C0017" alt="">
+        </div>
+        <div class="card" onclick="f_card(this)">
+            <img src="https://i2.ruliweb.com/img/5/5/2/E/552E46DA355A3C0017" alt="">
+        </div>
+        <div class="card" onclick="f_card(this)">
+            <img src="https://i2.ruliweb.com/img/5/5/2/E/552E46DA355A3C0017" alt="">
+        </div>
+    </div>
+    <script>
+        //this = 태그 전체
+        function f_click(p_this){
+           /*  console.log(event.target);
+            event.target.remove(); */
+            console.log(p_this);
+            p_this.remove();
+        }
+        
+        function f_card(p_this){
+            console.log(event.target);
+            // 여기서 target은 img 태그
+            event.target.remove();
+
+            console.log(p_this);
+            p_this.remove();
+        }
+
+    </script>
+</body>
+</html>
