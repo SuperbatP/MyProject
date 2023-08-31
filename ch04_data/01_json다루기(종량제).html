@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json다루기(종량제)</title>
+    <!-- 공공데이터 포털 : 종량제 검색  -->
+    <!-- https://www.data.go.kr/data/15025538/standard.do -->
+
+    <style>
+        .container {
+            width: 800px;
+            height: 600px;
+            margin: auto;
+            border: 1px solid black;
+
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <select id="selectLiter">
+                <option value="5ℓ가격">5ℓ가격</option>
+                <!-- selected 기본값 설정 -->
+                <option value="10ℓ가격" selected>10ℓ가격</option>
+                <option value="20ℓ가격">20ℓ가격</option>
+            </select>
+            <input id="inputRegion" onkeypress="f_enter(event)" type="text">
+            <button onclick="f_search()">검색</button>
+            <button id="btnSort" onclick="f_sort()">정렬▼</button>
+
+        </div>
+        <div id="content"></div>
+
+    </div>
+
+
+    <script src="./01_priceJS.js"></script>
+    <script>
+        console.log(priceData);
+        let v_records = priceData["records"];
+        console.log(v_records);
+        console.log(v_records[0]);
+        console.log(v_records[0]["5ℓ가격"]);
+
+        //JSON객체의 키값들 배열로 가져오기.
+        let v_keys = Object.keys(v_records[0]);
+        console.log(v_keys);
+
+        let v_seoul = [];
+
+        //v_records에서 서울 지역에 해당하는 데이터만 꺼내기. : 시도명-서울특별시
+
+        //추가 조건 : 종량제봉투사용대상-가정용 / 종량제봉투용도-생활쓰레기/종량제봉투종류-규격봉투/종량제봉투처리방식-소각용
+        for (let i = 0; i < v_records.length; i++) {
+            if (v_records[i]["시도명"].indexOf("서울") != -1 &&
+                v_records[i]["종량제봉투사용대상"] == "가정용" &&
+                v_records[i]["종량제봉투용도"] == "생활쓰레기" &&
+                v_records[i]["종량제봉투종류"] == "규격봉투" &&
+                v_records[i]["종량제봉투처리방식"] == "소각용" &&
+                v_records[i]["10ℓ가격"]) {
+                v_seoul.push(v_records[i]);
+            }
+        }
+        console.log(v_seoul);
+
+        //서울 종량제봉투 테이터 확보 ; 10리터 봉투 가격이 가장 비싼 '구' 선별.
+        let v_max = v_seoul[0];
+        for (let i = 0; i < v_seoul.length; i++) {
+            if (v_max["10ℓ가격"] < v_seoul[i]["10ℓ가격"]) {
+                v_max = v_seoul[i];
+            }
+        }
+        //380원인 은평구가 잡힘.
+        console.log(v_max);
+
+        //380원인 구역이 은평구 뿐인가? ; v_seoul에서 10리터 가격이 380원인 구역들을 수집
+        let v_maxRegions = [];
+        for (let i = 0; i < v_seoul.length; i++) {
+            // ===는 변수의 타입과 값이 모두 일치해야 true를 리턴
+            if (v_seoul[i]["10ℓ가격"] === v_max["10ℓ가격"]) {
+                v_maxRegions.push(v_seoul[i]);
+            }
+        }
+        console.log(v_maxRegions);
+
+        /*      let v_sum = [];
+             let v_total = 0;
+             //서울지역 데이터 중 v_seoul 10리터 종량제 봉투 가격 평균
+             for (let i = 0; i < v_seoul.length; i++) {
+                 // ===는 변수의 타입과 값이 모두 일치해야 true를 리턴
+                 if (v_seoul[i]["10ℓ가격"]) {
+                     v_sum.push(v_seoul[i]["10ℓ가격"]);
+                     v_total  += parseInt(v_sum[i]);
+                 }
+             }
+             console.log(v_total/(v_sum.length));
+      */
+        //선생님 버전
+        let v_sum = 0;
+        for (let i = 0; i < v_seoul.length; i++) {
+            v_sum += parseInt(v_seoul[i]["10ℓ가격"]);
+        }
+        let v_avg = v_sum / v_seoul.length;
+        console.log(v_avg);
+
+        //데이터를 화면에 뿌리기
+        const v_content = document.querySelector("#content");
+        for (let i = 0; i < v_records.length; i++) {
+            if (v_records[i]["종량제봉투사용대상"] == "가정용" &&
+                v_records[i]["종량제봉투용도"] == "생활쓰레기" &&
+                v_records[i]["종량제봉투종류"] == "규격봉투" &&
+                v_records[i]["종량제봉투처리방식"] == "소각용"
+            ) {
+
+                let v_str = "<h3>" + v_records[i]["시도명"];
+                v_str += " | " + v_records[i]["시군구명"];
+                v_str += " | " + v_records[i]["10ℓ가격"];
+
+                v_content.innerHTML += v_str;
+            }
+        }
+
+        const v_search = document.querySelector("#inputRegion");
+        const v_liter = document.querySelector("#selectLiter");
+
+        function f_search() {
+            let search = v_search.value;
+            v_content.innerHTML = '';
+            console.log(v_liter.value)
+            for (let i = 0; i < v_records.length; i++) {
+                if (v_records[i]["종량제봉투사용대상"] == "가정용" &&
+                    v_records[i]["종량제봉투용도"] == "생활쓰레기" &&
+                    v_records[i]["종량제봉투종류"] == "규격봉투" &&
+                    v_records[i]["종량제봉투처리방식"] == "소각용" &&
+                    v_records[i]["시도명"].indexOf(search) != -1
+                ) {
+                    let v_str = "<h3>" + v_records[i]["시도명"];
+                    v_str += " | " + v_records[i]["시군구명"];
+                    //체크박스로 받은 리터의 값을 뿌리는 단에 설정.
+                    v_str += " | " + v_liter.value + ": " + v_records[i][v_liter.value] + "</h3";
+
+                    v_content.innerHTML += v_str;
+                }
+            }
+        }
+
+        /* function f_search() {
+            //기존에 그려져 있는 내용 지워야함.
+            v_content.innerHTML = '';
+            //input으로 받은 값이 키워드->v_search.value
+
+            for (let i = 0; i < v_records.length; i++) {
+                //indexOf ; 포함하고 있는지 확인. -> 포함하지 않으면 -1을 반환, 포함하면 -1이외의 값을 반환.
+                if (v_records[i]["시도명"].indexOf(v_search.value) != -1 &&
+                    v_records[i]["종량제봉투사용대상"] == "가정용" &&
+                    v_records[i]["종량제봉투용도"] == "생활쓰레기" &&
+                    v_records[i]["종량제봉투종류"] == "규격봉투" &&
+                    v_records[i]["종량제봉투처리방식"] == "소각용") {
+
+                    let v_str = "<h3>" + v_records[i]["시도명"];
+                    v_str += " | " + v_records[i]["시군구명"];
+                    v_str += " | " + v_records[i]["10ℓ가격"] + "</h3";
+
+                    v_content.innerHTML += v_str;
+                }
+            }
+        } */
+
+        function f_enter(event) {
+            if (event.keyCode == 13) {
+                f_search();
+            }
+        }
+        // isDirection = false면 내림차순 / isDirection = true면 오름차순
+        let isDirection = false;
+        const v_btnSort = document.querySelector("#btnSort");
+        let v_array = [];
+        function f_sort() {
+            //조건에 맞는 데이터를 배열에 담은 후 -> 배열을 정렬 시킨 후 화면에 그리기.
+            v_content.innerHTML = '';
+
+            for (let i = 0; i < v_records.length; i++) {
+                if (v_records[i]["시도명"].indexOf(v_search.value) != -1 &&
+                    v_records[i]["종량제봉투사용대상"] == "가정용" &&
+                    v_records[i]["종량제봉투용도"] == "생활쓰레기" &&
+                    v_records[i]["종량제봉투종류"] == "규격봉투" &&
+                    v_records[i]["종량제봉투처리방식"] == "소각용") {
+                    v_array.push(v_records[i]);
+                }
+            }
+
+            if (isDirection) {
+                //오름차순
+                v_btnSort.innerHTML = "정렬▲"
+                v_array.sort(function (a, b) {
+                    return a[v_liter.value] - b[v_liter.value];
+                });
+            } else {
+                //내림차순
+                v_btnSort.innerHTML = "정렬▼"
+                //배열정렬 [{},{},{},{] ....}]
+                //function(a,b)에서 a와 b는 배열 내 요소(객체) -> 왼쪽과 오른쪽 {} vs {} 거품 정렬(Bubble Sort)로 객체를 비교. 
+                v_array.sort(function (a, b) {
+                    //왼쪽과 오른쪽 값의 차이를 리턴해주면, 값의 차이가 양수 또는 음수이므로 이에 맞춰서 정렬이 발생한다.
+                    return b[v_liter.value] - a[v_liter.value];
+                    //a-b | b-a로 바꾸면 정렬순서가 바뀜. 
+                });
+            }
+            isDirection = !isDirection;
+
+            //화면에 그리기
+            for (let i = 0; i < v_array.length; i++) {
+                let v_str = "<h3>" + v_array[i]["시도명"];
+                v_str += " | " + v_array[i]["시군구명"];
+                v_str += " | " + v_liter.value + ": " + v_array[i][v_liter.value] + "</h3";
+                v_content.innerHTML += v_str;
+            }
+        }
+        //이름에 대한 오름차순 내림차순은 해볼것.
+
+
+        f_search();
+
+    </script>
+
+</body>
+
+</html>
